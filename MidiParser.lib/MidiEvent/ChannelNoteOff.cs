@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MidiParser.lib.MidiEvent
+﻿namespace MidiParser.lib.MidiEvent
 {
     /// <summary>
     /// Voice when a key is left or a note turns off

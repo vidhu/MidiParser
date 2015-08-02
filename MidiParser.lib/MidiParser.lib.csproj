@@ -37,7 +37,7 @@
     <!-- A reference to the entire .NET Framework is automatically included -->
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Note.cs" />
+    <Compile Include="MidiNote.cs" />
     <Compile Include="MidiEvent\ChannelNoteOff.cs" />
     <Compile Include="MidiEvent\ChannelNoteOn.cs" />
     <Compile Include="MidiEvent\ChannelVoice.cs" />

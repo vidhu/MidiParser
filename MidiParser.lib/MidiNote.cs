@@ -1,6 +1,6 @@
 ﻿namespace MidiParser.lib
 {
-    public class Note
+    public class MidiNote
     {
         /// <summary>
         /// The midi track that contains this note
@@ -41,7 +41,7 @@
         /// <param name="parent">MidiFile this is part of</param>
         /// <param name="start">Absolute start time in ticks</param>
         /// <param name="end">Absolute end time in ticks</param>
-        public Note(MidiTrack parent, int start, int end)
+        public MidiNote(MidiTrack parent, int start, int end)
         {
             this.Parent = parent;
             this.Start = start;

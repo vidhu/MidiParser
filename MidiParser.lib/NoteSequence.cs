@@ -13,13 +13,13 @@ namespace MidiParser.lib
 
         /// <summary>
         /// Data structure to hold the Midi Sequence
-        /// Key:    Note key
+        /// Key:    MidiNote key
         /// Valye:  List of Notes
         /// </summary>
-        private Dictionary<int, List<Note>> _seq = new Dictionary<int, List<Note>>();
+        private Dictionary<int, List<MidiNote>> _seq = new Dictionary<int, List<MidiNote>>();
 
         /// <summary>
-        /// Creates a Note sequence from the given MidiTrack
+        /// Creates a MidiNote sequence from the given MidiTrack
         /// </summary>
         /// <param name="track">Midi Track to read</param>
         public NoteSequence(MidiTrack track)
@@ -38,8 +38,8 @@ namespace MidiParser.lib
                 if (voice is ChannelNoteOn)
                 {
                     ChannelNoteOn noteOn = (ChannelNoteOn)voice;
-                    if (!_seq.ContainsKey(noteOn.Note)) _seq[noteOn.Note] = new List<Note>();
-                    _seq[noteOn.Note].Add(new Note(this.Track, voice.Time, 0));
+                    if (!_seq.ContainsKey(noteOn.Note)) _seq[noteOn.Note] = new List<MidiNote>();
+                    _seq[noteOn.Note].Add(new MidiNote(this.Track, voice.Time, 0));
                 }
                 else if (voice is ChannelNoteOff)
                 {
@@ -54,7 +54,7 @@ namespace MidiParser.lib
         /// </summary>
         /// <param name="key">Get notes for this key</param>
         /// <returns></returns>
-        public List<Note> this[int key]
+        public List<MidiNote> this[int key]
         {
             get
             {

@@ -7,12 +7,12 @@ namespace MidiParser.lib.MidiEvent
     public class ChannelNoteOn : ChannelVoice
     {
         /// <summary>
-        /// Note number (tone)
+        /// MidiNote number (tone)
         /// </summary>
         public byte Note { get; private set; }
 
         /// <summary>
-        /// Velocity of this Note
+        /// Velocity of this MidiNote
         /// </summary>
         public byte Velocity { get; private set; }
 
@@ -20,8 +20,8 @@ namespace MidiParser.lib.MidiEvent
         /// </summary>
         /// <param name="time">Absolute time in ticks</param>
         /// <param name="channel">Channel this occures in</param>
-        /// <param name="note">Note number</param>
-        /// <param name="velocity">Note velocity</param>
+        /// <param name="note">MidiNote number</param>
+        /// <param name="velocity">MidiNote velocity</param>
         public ChannelNoteOn(int time, int channel, byte note, byte velocity)
             :base(time, channel)
         {

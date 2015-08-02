@@ -20,12 +20,24 @@ namespace MidiParser.lib
         /// </summary>
         public string Name;
 
-        
         List<ChannelVoice> _voice = new List<ChannelVoice>();
         /// <summary>
         /// Contains the ChannelVoices in this track
         /// </summary>
         public List<ChannelVoice> Voice { get { return _voice; } private set { _voice = value; } }
+
+        NoteSequence _sequence = null;
+        /// <summary>
+        /// Sequence of notes in this track
+        /// </summary>
+        public NoteSequence NoteSequence {
+            get
+            {
+                if (this._sequence == null)
+                    _sequence = new NoteSequence(this);
+                return this._sequence;
+            }
+        }
 
         /// <summary>
         /// Number of ticks in this Track
@@ -49,33 +61,6 @@ namespace MidiParser.lib
         public MidiTrack(MidiFile parent)
         {
             this.Parent = parent;
-        }
-
-        /// <summary>
-        /// Generates a dictionary where the key is the Note's key
-        /// and the Value if a sequence of notes in that key
-        /// </summary>
-        /// <returns></returns>
-        public Dictionary<int, List<Note>> GetNoteSequence()
-        {
-            Dictionary<int, List<Note>> seq = new Dictionary<int, List<Note>>();
-
-            foreach(ChannelVoice voice in this.Voice)
-            {
-                if(voice is ChannelNoteOn)
-                {
-                    ChannelNoteOn noteOn = (ChannelNoteOn)voice;
-                    if(!seq.ContainsKey(noteOn.Note)) seq[noteOn.Note] = new List<Note>();
-                    seq[noteOn.Note].Add(new Note(this, voice.Time, 0));
-                }
-                else if(voice is ChannelNoteOff)
-                {
-                    ChannelNoteOff noteOff = (ChannelNoteOff)voice;
-                    seq[noteOff.Note].Last().End = noteOff.Time;
-                }
-            }
-
-            return seq;
         }
 
         /// <summary>
